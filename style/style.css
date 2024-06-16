@@ -30,6 +30,10 @@
     background-size: contain;
     background-repeat: repeat;
   }
+  .btn {
+
+    width: -webkit-fill-available;
+}
 
   .logo img {
     width: 95px;
