@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- google fonts link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;0,1000;1,800;1,900;1,1000&family=Protest+Guerrilla&family=Roboto+Condensed:ital,wght@0,100;0,200;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,500;1,100;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <!--bootstrap link-->
+  <link rel="stylesheet" href="style/bootstrap.css">
+  <link rel="stylesheet" href="style/bootstrap.min.css">
+  <!-- form css -->
+   <link rel="stylesheet" href="style/form.css">
+  <!--Main link-->
+  <link rel="stylesheet" href="style/style.css">
+  <!--Main responsive link-->
+  <!-- <link rel="stylesheet" href="style/responsive.css"> -->
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="home">
+    <nav class=" container p-3 d-flex justify-content-between align-items-center navbar-light">
+      <div class="logo">
+
+        <img src="./assets/img/blockShift-logo.jpg" width="30" height="30" alt="">
+
+
+      </div>
+      <div class="menu navMenu">
+        <span class="hamburg navIcon"> <i class="fa-solid fa-bars"></i> </span>
+        <ul class="menuActive menuHide">
+          <li><a class="active" href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#emailus">Contact</a></li>
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+  <section class="bg" id="hero">
+
+  
+  
+
+    <div id="blockShiftTitle">
+      <div   class="inVestmentSection container" >
+        <div class="row align-items-center">
+          <div class="companyName col-lg-6 col-md-6 col-sm-12" >
+            <span class="d-flex justify-content-center align-items-center gap-1 ">
+              <img src="./assets/img/blockShiftSign.png" alt="">
+              <h1> Block Shift <span>Capital</span></h1>
+            </span>
+
+            <!-- <p>
+              CSP DAO focuses on investment opportunities that will spark the internet’s next paradigm shift. Through a
+              research-driven and rigorous bottom-up investment process, CSP DAO supports exceptional project teams that
+              are utilising blockchain technology to usher in the internet’s next architectural shift.
+            </p> -->
+
+            <p>
+              Block Shift Capital is dedicated to identifying and nurturing investment opportunities that have the potential to transform the internet's landscape. By employing a thorough and meticulous bottom-up investment approach, Block Shift Capital champions outstanding project teams leveraging blockchain technology to drive the next significant evolution of the internet's architecture.
+            </p>
+
+            <div class="fundingBtn">
+              <button><a href="https://6vex6aqybnw.typeform.com/to/TeGGwRYm" target="_blank"> Become a Investors</a></button>
+              <button><a href="https://6vex6aqybnw.typeform.com/to/O5y9PcD1" target="_blank">Apply for Funding</a></button>
+            </div>
+
+          </div>
+          <div class="worldCanvas col-lg-6 col-md-6 col-sm-12">
+            <div class="elementor-widget-container"> <canvas id="scene" width="792" height="792"></canvas>
+        
+              <style media="all">
+                canvas {
+                  width: 50vmin;
+                  height: 50vmin;
+                  background: #ffffff4d;
+                  border-radius: 100%;
+                  box-shadow: rgb(255 255 255) 0 7px 49px 0
+                }
+                @media (min-width: 768px) and (max-width: 999px) {
+                  canvas {
+                  width: 40vmin;
+                  height: 40vmin;
+                }
+
+                }
+              </style>
+              <script>
+                console.clear();
+                // Get the canvas element from the DOM
+                const canvas = document.querySelector('#scene');
+                canvas.width = canvas.clientWidth;
+                canvas.height = canvas.clientHeight;
+                // Store the 2D context
+                const ctx = canvas.getContext('2d');
+                if (window.devicePixelRatio > 1) {
+                  canvas.width = canvas.clientWidth * 2;
+                  canvas.height = canvas.clientHeight * 2;
+                  ctx.scale(2, 2);
+                }
+                /* ====================== */
+                /* ====== VARIABLES ===== */
+                /* ====================== */
+                let width = canvas.clientWidth; // Width of the canvas
+                let height = canvas.clientHeight; // Height of the canvas
+                let rotation = 0; // Rotation of the globe
+                let dots = []; // Every dots in an array
+                /* ====================== */
+                /* ====== CONSTANTS ===== */
+                /* ====================== */
+                /* Some of those constants may change if the user resizes their screen but I still strongly believe they belong to the Constants part of the variables */
+                const DOTS_AMOUNT = 1000; // Amount of dots on the screen
+                const DOT_RADIUS = 4; // Radius of the dots
+                let GLOBE_RADIUS = width * 0.7; // Radius of the globe
+                let GLOBE_CENTER_Z = -GLOBE_RADIUS; // Z value of the globe center
+                let PROJECTION_CENTER_X = width / 2; // X center of the canvas HTML
+                let PROJECTION_CENTER_Y = height / 2; // Y center of the canvas HTML
+                let FIELD_OF_VIEW = width * 0.8;
+                class Dot {
+                  constructor(x, y, z) {
+                    this.x = x;
+                    this.y = y;
+                    this.z = z;
+                    this.xProject = 0;
+                    this.yProject = 0;
+                    this.sizeProjection = 0;
+                  }
+                  // Do some math to project the 3D position into the 2D canvas
+                  project(sin, cos) {
+                    const rotX = cos * this.x + sin * (this.z - GLOBE_CENTER_Z);
+                    const rotZ = -sin * this.x + cos * (this.z - GLOBE_CENTER_Z) + GLOBE_CENTER_Z;
+                    this.sizeProjection = FIELD_OF_VIEW / (FIELD_OF_VIEW - rotZ);
+                    this.xProject = (rotX * this.sizeProjection) + PROJECTION_CENTER_X;
+                    this.yProject = (this.y * this.sizeProjection) + PROJECTION_CENTER_Y;
+                  }
+                  // Draw the dot on the canvas
+                  draw(sin, cos) {
+                    this.project(sin, cos);
+                    // ctx.fillRect(this.xProject - DOT_RADIUS, this.yProject - DOT_RADIUS, DOT_RADIUS * 2 * this.sizeProjection, DOT_RADIUS * 2 * this.sizeProjection);
+                    ctx.beginPath();
+                    ctx.arc(this.xProject, this.yProject, DOT_RADIUS * this.sizeProjection, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                  }
+                }
+                function createDots() {
+                  // Empty the array of dots
+                  dots.length = 0;
+                  // Create a new dot based on the amount needed
+                  for (let i = 0; i < DOTS_AMOUNT; i++) {
+                    const theta = Math.random() * 2 * Math.PI; // Random value between [0, 2PI]
+                    const phi = Math.acos((Math.random() * 2) - 1); // Random value between [-1, 1]
+                    // Calculate the [x, y, z] coordinates of the dot along the globe
+                    const x = GLOBE_RADIUS * Math.sin(phi) * Math.cos(theta);
+                    const y = GLOBE_RADIUS * Math.sin(phi) * Math.sin(theta);
+                    const z = (GLOBE_RADIUS * Math.cos(phi)) + GLOBE_CENTER_Z;
+                    dots.push(new Dot(x, y, z));
+                  }
+                }
+                /* ====================== */
+                /* ======== RENDER ====== */
+                /* ====================== */
+                function render(a) {
+                  // Clear the scene
+                  ctx.clearRect(0, 0, width, height);
+                  // Increase the globe rotation
+                  rotation = a * 0.0004;
+                  const sineRotation = Math.sin(rotation); // Sine of the rotation
+                  const cosineRotation = Math.cos(rotation); // Cosine of the rotation
+                  // Loop through the dots array and draw every dot
+                  for (var i = 0; i < dots.length; i++) {
+                    dots[i].draw(sineRotation, cosineRotation);
+                  }
+                  window.requestAnimationFrame(render);
+                }
+                // Function called after the user resized its screen
+                function afterResize() {
+                  width = canvas.offsetWidth;
+                  height = canvas.offsetHeight;
+                  if (window.devicePixelRatio > 1) {
+                    canvas.width = canvas.clientWidth * 2;
+                    canvas.height = canvas.clientHeight * 2;
+                    ctx.scale(2, 2);
+                  } else {
+                    canvas.width = width;
+                    canvas.height = height;
+                  }
+                  GLOBE_RADIUS = width * 0.7;
+                  GLOBE_CENTER_Z = -GLOBE_RADIUS;
+                  PROJECTION_CENTER_X = width / 2;
+                  PROJECTION_CENTER_Y = height / 2;
+                  FIELD_OF_VIEW = width * 0.8;
+                  createDots(); // Reset all dots
+                }
+                // Variable used to store a timeout when user resized its screen
+                let resizeTimeout;
+                // Function called right after user resized its screen
+                function onResize() {
+                  // Clear the timeout variable
+                  resizeTimeout = window.clearTimeout(resizeTimeout);
+                  // Store a new timeout to avoid calling afterResize for every resize event
+                  resizeTimeout = window.setTimeout(afterResize, 500);
+                }
+                window.addEventListener('resize', onResize);
+                // Populate the dots array with random dots
+                createDots();
+                // Render the scene
+                window.requestAnimationFrame(render);
+              </script>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+    <div class="sepaDiv">
+
+    </div>
+
+  </section>
+
+  <section id="growingNetwork">
+
+    <div class="container">
+      <div class="growingNetwork">
+        <div class="title">
+          <h1>Growing Global Network</h1>
+        </div>
+
+        <div class="netWorkWraper">
+          <div class="networkCount">
+            <h2>750+</h2>
+            <p>Members</p>
+          </div>
+          <div class="networkCount">
+            <h2>3614+</h2>
+            <p> Members Market Cap</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="aboutWrapper row">
+        <div class="aboutImg col-lg-6 col-md-6 col-sm-12">
+          <img src="./assets/img/about2.PNG" alt="aboutImg">
+         
+        
+        </div>
+        <div class="aboutTxt col-lg-6 col-md-6 col-sm-12">
+          <h1>About</h1>
+          <div class="separator"></div>
+
+          <!-- <p>
+            At CSP DAO, we believe in the transformative potential of the digital age. As pioneers at the forefront of
+            the next wave of internet evolution, our core mission revolves around identifying and fostering breakthrough
+            investment opportunities that are set to revolutionize the digital landscape.
+            <br>
+            <br>
+            We understand that we stand on the brink of an internet architectural metamorphosis, a shift that will
+            redefine how we understand, interact with, and harness technology. Blockchain technology, with its
+            decentralized and immutable nature, is the powerhouse behind this shift. Our commitment is to champion the
+            most promising projects, teams, and innovations harnessing this technology.
+          </p> -->
+          <p>
+            At Block Shift Capital, we are committed to the vision of a digitally empowered future. Positioned at the cutting edge of the impending internet revolution, our primary goal is to uncover and support groundbreaking investment opportunities poised to reshape the digital world.
+            <br>
+            <br>
+            We recognize that we are on the cusp of a monumental transformation in internet architecture, a change that will alter our perception, engagement, and utilization of technology. With blockchain technology as the driving force, characterized by its decentralized and unalterable framework, we are dedicated to advocating for the most innovative projects, talented teams, and pioneering advancements leveraging this technology.
+            
+          </p>
+
+
+          <section id="portfolio">
+
+          </section>
+        </div>
+      </div>
+
+    </div>
+  
+  </section>
+<section id="investmentsProcess">
+
+  <div class="pt-[100px] pb-[80px]">
+    <div class="container">
+      <h1
+        class="investment-funnel-title opacity-0 title-gradient text-center text-[30px] md:text-[44px] text-darkGrey font-light leading-[100%] lg:leading-[95%] mb-[40px] transition-all tracking-tight"
+        style="opacity: 1;">Block Shift Capital Investment Process</h1>
+      <div class="hidden lg:grid grid-cols-3 gap-16 p-4">
+        <div
+          class="investment-funnel-card opacity-0 bg-black flex flex-col items-center border border-[#333131] relative"
+          style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+          <div class="bg-[#333131] absolute top-0 left-0 p-2 text-[#A7918B] text-[10px] z-20">0<!-- -->1</div>
+          <div class="h-[250px] flex justify-center -mb-5">
+            <img alt="Circle Chart" loading="lazy" width="279"
+              height="225" decoding="async" data-nimg="1" class="object-contain card-image opacity-0"
+              style="color: transparent; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"
+              src="./assets/img/1.gif">
+          </div>
+          <div class="card-content opacity-0 p-10 flex flex-col space-y-3"
+            style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+            <h2 class="title-gradient text-[24px]">Sourcing and Screening </h2>
+            <div class="text-gradient text-[16px]">
+              <p><strong>Sourcing </strong>: Actively seek out promising startups and projects through  industry events, networking, referrals, and research.
+                <strong>Screening</strong>: Conduct an initial review of potential investments to assess their alignment with BlockShift Capital's investment. </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="investment-funnel-card opacity-0 bg-black flex flex-col items-center border border-[#333131] relative"
+          style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+          <div class="bg-[#333131] absolute top-0 left-0 p-2 text-[#A7918B] text-[10px] z-20">0<!-- -->2</div>
+          <div class="h-[250px] flex justify-center -mb-5"><img alt="Chart Stack" loading="lazy" width="279"
+              height="225" decoding="async" data-nimg="1" class="object-contain card-image opacity-0"
+              style="color: transparent; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"
+              src="./assets/img/2.gif">          </div>
+          <div class="card-content opacity-0 p-10 flex flex-col space-y-3"
+            style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+            <h2 class="title-gradient text-[24px]">Initial Evaluation</h2>
+            <div class="text-gradient text-[16px]">
+              <p><strong>Assessment</strong>: Perform a preliminary evaluation of the startup’s business model, technology, market potential, team, and competitive landscape.
+                <strong>Meetings</strong>: Hold introductory meetings with the founders to understand their vision, strategy</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="investment-funnel-card opacity-0 bg-black flex flex-col items-center border border-[#333131] relative"
+          style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+          <div class="bg-[#333131] absolute top-0 left-0 p-2 text-[#A7918B] text-[10px] z-20">0<!-- -->3</div>
+          <div class="h-[250px] flex justify-center -mb-5"><img alt="Pledge" loading="lazy" width="279" height="225"
+              decoding="async" data-nimg="1" class="object-contain card-image opacity-0"
+              style="color: transparent; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"
+              src="./assets/img/3.gif">          </div>
+          <div class="card-content opacity-0 p-10 flex flex-col space-y-3"
+            style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+            <h2 class="title-gradient text-[24px]">Due Diligence</h2>
+            <div class="text-gradient text-[16px]">
+              <p><strong>Technical Due Diligence</strong>: Examine the technical aspects of the project, including blockchain architecture, security, scalability,.
+                <strong>Market Analysis</strong>: Evaluate the market opportunity, target audience, competitive environment, and potential for growth.
+                
+                </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="investment-funnel-card opacity-0 bg-black flex flex-col items-center border border-[#333131] relative"
+          style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+          <div class="bg-[#333131] absolute top-0 left-0 p-2 text-[#A7918B] text-[10px] z-20">0<!-- -->4</div>
+          <div class="h-[250px] flex justify-center -mb-5"><img alt="Pillar Chart" loading="lazy" width="279"
+              height="225" decoding="async" data-nimg="1" class="object-contain card-image opacity-0"
+              style="color: transparent; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"
+              src="./assets/img/4.gif">          </div>
+          <div class="card-content opacity-0 p-10 flex flex-col space-y-3"
+            style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+            <h2 class="title-gradient text-[24px]">Investment Committee Review</h2>
+            <div class="text-gradient text-[16px]">
+              <p><strong>Presentation</strong>: Prepare a detailed investment memo and presentation for the investment committee, summarizing findings.
+                <strong>Decision</strong>: The investment committee reviews the proposal and makes a decision based on strategic fit.</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="investment-funnel-card opacity-0 bg-black flex flex-col items-center border border-[#333131] relative"
+          style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+          <div class="bg-[#333131] absolute top-0 left-0 p-2 text-[#A7918B] text-[10px] z-20">0<!-- -->5</div>
+          <div class="h-[250px] flex justify-center -mb-5"><img alt="Distribution bars" loading="lazy" width="279"
+              height="225" decoding="async" data-nimg="1" class="object-contain card-image opacity-0"
+              style="color: transparent; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"
+              src="./assets/img/5.gif">          </div>
+          <div class="card-content opacity-0 p-10 flex flex-col space-y-3"
+            style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+            <h2 class="title-gradient text-[24px]">Term Sheet and Negotiation</h2>
+            <div class="text-gradient text-[16px]">
+              <p><strong>Term Sheet</strong>: If approved, draft a term sheet outlining the terms and conditions of the investment, including valuation, investment amount, equity stake, and investor rights.
+            
+            </div>
+          </div>
+        </div>
+        <div
+          class="investment-funnel-card opacity-0 bg-black flex flex-col items-center border border-[#333131] relative"
+          style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+          <div class="bg-[#333131] absolute top-0 left-0 p-2 text-[#A7918B] text-[10px] z-20">0<!-- -->6</div>
+          <div class="h-[250px] flex justify-center -mb-5"><img alt="Repeat" loading="lazy" width="279" height="225"
+              decoding="async" data-nimg="1" class="object-contain card-image opacity-0"
+              style="color: transparent; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"
+              src="./assets/img/6.gif">          </div>
+          <div class="card-content opacity-0 p-10 flex flex-col space-y-3"
+            style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+            <h2 class="title-gradient text-[24px]">Post-Investment Support</h2>
+            <div class="text-gradient text-[16px]">
+              <p><strong>Strategic Guidance</strong>: Provide ongoing strategic advice and mentorship to help the startup achieve its goals and navigate challenges.
+                Networking: Leverage BlockShift Capital’s network to connect the startup with industry experts, partners, and potential customers. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- <div class="investment-funnel-button opacity-0 w-full flex justify-center lg:justify-end mt-20"
+        style="opacity: 1;"><button
+          class="text-nanoRed flex items-center space-x-[10px] uppercase font-normal leading-[94%] text-[16px] md:text-[18px] hover:text-white transition-all"
+          type="button"><span>Gain Access</span>
+          <div class="relative -top-[3px]"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="14"
+              viewBox="0 0 22 14" fill="none">
+              <path d="M0 7H21M21 7L15.0275 1M21 7L15.0275 13" stroke="CurrentColor"></path>
+            </svg></div>
+        </button></div> -->
+    </div>
+  </div>
+
+</section>
+
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="mb-4 text-center mt-5 portfolioTitle">Portfolio</h2>
+          <div class="separator2"></div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-12 text-center d-flex">
+          <ul class="list-unstyled list-inline mb-0 portfolio-ul">
+
+
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://overlay.market" target="_blank">
+                <img src="./assets/img/portfolio/overlay.png" alt="PORTFOLIO Csp DAO - Overlay" class="width-150">
+              </a>
+            </li>
+
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://www.arcana.network/" target="_blank">
+                <img src="./assets/img/portfolio/arcana.png" alt="PORTFOLIO Csp DAO - Arcana" class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://www.interswap.io/" target="_blank">
+                <img src="./assets/img/portfolio/interswap.png" alt="PORTFOLIO Csp DAO - Interswap" class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://www.filswan.com/" target="_blank">
+                <img src="./assets/img/portfolio/filswan.png" alt="PORTFOLIO Csp DAO - Filswan" class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://port3.io/" target="_blank">
+                <img src="./assets/img/portfolio/port3.png" alt="PORTFOLIO Csp DAO - Port3" class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://kanalabs.io/" target="_blank">
+                <img src="./assets/img/portfolio/kanalabs.png" alt="PORTFOLIO Csp DAO - Kanalabs" class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://www.threely.io/" target="_blank">
+                <img src="./assets/img/portfolio/threely.png" alt="PORTFOLIO Csp DAO - Threely" class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://versatus.io/" target="_blank">
+                <img src="./assets/img/portfolio/versatus.png" alt="PORTFOLIO Csp DAO - Versatus" class="width-150" "="">
+                            </a>
+                        </li>
+
+                        <li class=" list-inline-item mr-0 portfolio-border-color width-150">
+                <a href="https://revolvinggames.com/" target="_blank">
+                  <img src="./assets/img/portfolio/revolvinggames.png" alt="PORTFOLIO Csp DAO - Revolvinggames"
+                    class="width-150">
+                </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://www.silentprotocol.org/" target="_blank">
+                <img src="./assets/img/portfolio/silentprotocol.png" alt="PORTFOLIO Csp DAO - Silentprotocol"
+                  class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150">
+              <a href="https://www.shrapnel.com/" target="_blank">
+                <img src="./assets/img/portfolio/shrapnel.png" alt="PORTFOLIO Csp DAO - Shrapnel" class="width-150">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://www.analog.one" target="_blank">
+                <img src="./assets/img/portfolio/analog.png" alt="PORTFOLIO Csp DAO - Analog" class="width-100">
+              </a>
+            </li>
+
+
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://www.redbelly.network/" target="_blank">
+                <img src="./assets/img/portfolio/redbelly-network.png" alt="PORTFOLIO Csp DAO - Redbelly"
+                  class="width-100">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://fewfar.com/" target="_blank">
+                <img src="./assets/img/portfolio/fewfarcom.png" alt="PORTFOLIO Csp DAO - FewFar" class="width-100">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://nayms.com/" target="_blank">
+                <img src="./assets/img/portfolio/naymscom.png" alt="PORTFOLIO Csp DAO - Nayms" class="width-100">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://tatsumeeko.com/" target="_blank">
+                <img src="./assets/img/portfolio/tatsumeeko.png" alt="PORTFOLIO Csp DAO - Tatsumeeko" class="width-100">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://shardeum.org/" target="_blank">
+                <img src="./assets/img/portfolio/shardeum.png" alt="PORTFOLIO Csp DAO - Shardum" class="width-100">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://www.xdao.app/" target="_blank">
+                <img src="./assets/img/portfolio/xdao-app.png" alt="PORTFOLIO Csp DAO - Xdao App" class="width-100">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://desyn.io/" target="_blank">
+                <img src="./assets/img/portfolio/desyn-io.png" alt="PORTFOLIO Csp DAO - Desyn" class="width-100">
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://magicsquare.io/" target="_blank">
+                <img src="./assets/img/portfolio/magicsquare.png" alt="PORTFOLIO Csp DAO - Magicsquare"
+                  class="width-100">
+              </a>
+            </li>
+
+
+            <li class="list-inline-item mr-0 portfolio-border-color width-150" style="padding:14px">
+              <a href="https://bitscrunch.com/" target="_blank">
+                <img src="./assets/img/portfolio/bitscrunch.png" alt="PORTFOLIO Csp DAO - Bits Crunch"
+                  class="width-100">
+              </a>
+            </li>
+<!-- 
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://secondlive.world/"
+                target="_blank"><img src="./assets/img/portfolio/secondlive.png" alt="PORTFOLIO Csp DAO - secondlive"
+                  class="width-150 secondlive"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://portaldefi.com"
+                target="_blank"><img src="./assets/img/portfolio/portal.png" alt="PORTFOLIO Csp DAO - portaldefi"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.onerare.io/"
+                target="_blank"><img src="./assets/img/portfolio/onerare.png" alt="PORTFOLIO Csp DAO - onerare"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://omniatech.io/"
+                target="_blank"><img src="./assets/img/portfolio/omnia.png" alt="PORTFOLIO Csp DAO - Omniatech"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://kaizen.finance/"
+                target="_blank"><img src="./assets/img/portfolio/kaizen.png" alt="PORTFOLIO Csp DAO - Kaizen finance"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.arcade2earn.io"
+                target="_blank"><img src="./assets/img/portfolio/arcade2earn.png" alt="PORTFOLIO Csp DAO - arcade2earn"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.eizperchain.com"
+                target="_blank"><img src="./assets/img/portfolio/eizperchain.png" alt="PORTFOLIO Csp DAO - Eizperchain"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://sacred.finance/"
+                target="_blank"><img src="./assets/img/portfolio/sacred.png" alt="PORTFOLIO Csp DAO - Sacred finance"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://optixprotocol.com"
+                target="_blank"><img src="./assets/img/portfolio/optixprotocol.png"
+                  alt="PORTFOLIO Csp DAO - optixprotocol" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://sharkrace.com/"
+                target="_blank"><img src="./assets/img/portfolio/sharkrace.png" alt="PORTFOLIO Csp DAO - Sharkrace"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.outlanders.com/"
+                target="_blank"><img src="./assets/img/portfolio/outlanders.png" alt="PORTFOLIO Csp DAO - Outlanders"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://shushshush.com"
+                target="_blank"><img src="./assets/img/portfolio/shushshush.png" alt="PORTFOLIO Csp DAO - Shushshush"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.fusotao.org/"
+                target="_blank"><img src="./assets/img/portfolio/fusotao.png" alt="PORTFOLIO Csp DAO - Fusotao"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://borntodiegame.com/"
+                target="_blank"><img src="./assets/img/portfolio/borntodiegame.png"
+                  alt="PORTFOLIO Csp DAO - Borntodie game" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.damex.io/"
+                target="_blank"><img src="./assets/img/portfolio/damex.png" alt="PORTFOLIO Csp DAO - Damex"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://meson.network/"
+                target="_blank"><img src="./assets/img/portfolio/meson.png" alt="PORTFOLIO Csp DAO - Meson network"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://angelblock.io"
+                target="_blank"><img src="./assets/img/portfolio/angelblock.png" alt="PORTFOLIO Csp DAO - AngelBlock"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.thefabled.io"
+                target="_blank"><img src="./assets/img/portfolio/thefabled.png" alt="PORTFOLIO Csp DAO - TheFabled"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://rainfall.one" target="_blank"><img
+                  src="./assets/img/portfolio/rainfall.png" alt="PORTFOLIO Csp DAO - Rainfall" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://newcoin.org" target="_blank"><img
+                  src="./assets/img/portfolio/newcoin.png" alt="PORTFOLIO Csp DAO - Newcoin" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://divvy.bet" target="_blank"><img
+                  src="./assets/img/portfolio/divvy.png" alt="PORTFOLIO Csp DAO - Divvy" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://debond.org" target="_blank"><img
+                  src="./assets/img/portfolio/debond.png" alt="PORTFOLIO Csp DAO - Debond" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://anitolegends.com"
+                target="_blank"><img src="./assets/img/portfolio/anitolegends.png"
+                  alt="PORTFOLIO Csp DAO - Anitolegends" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://metabase.gg" target="_blank"><img
+                  src="./assets/img/portfolio/metabase.png" alt="PORTFOLIO Csp DAO - Metabase" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://breach.gg" target="_blank"><img
+                  src="./assets/img/portfolio/breach.png" alt="PORTFOLIO Csp DAO - Polysynth" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://polysynth.com"
+                target="_blank"><img src="./assets/img/portfolio/polysynth.png" alt="PORTFOLIO Csp DAO - Polysynth"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://nakaverse.games"
+                target="_blank"><img src="./assets/img/portfolio/nakaverse.png" alt="PORTFOLIO Csp DAO - Nakaverse"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://voicestreet.org"
+                target="_blank"><img src="./assets/img/portfolio/voicestreet.png" alt="PORTFOLIO Csp DAO - Voicestreet"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://o-mee.io" target="_blank"><img
+                  src="./assets/img/portfolio/o-mee.png" alt="PORTFOLIO Csp DAO - O-mee" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://eaas.global" target="_blank"><img
+                  src="./assets/img/portfolio/eaas.png" alt="PORTFOLIO Csp DAO - Eaas" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.litcraft.io"
+                target="_blank"><img src="./assets/img/portfolio/litcraft.png" alt="PORTFOLIO Csp DAO - Litcraft"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.chaincrisis.com"
+                target="_blank"><img src="./assets/img/portfolio/chaincrisis.png" alt="PORTFOLIO Csp DAO - ChainCrisis"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://defiyield.app"
+                target="_blank"><img src="./assets/img/portfolio/defiyield.png" alt="PORTFOLIO Csp DAO - Defiyield"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://bnext.es" target="_blank"><img
+                  src="./assets/img/portfolio/bnext.png" alt="PORTFOLIO Csp DAO - Bnext" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://onepad.com" target="_blank"><img
+                  src="./assets/img/portfolio/onepad.png" alt="PORTFOLIO Csp DAO - Onepad" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://synergyland.live/"
+                target="_blank"><img src="./assets/img/portfolio/synergyland.png" alt="PORTFOLIO Csp DAO - Synergyland"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.affyn.com"
+                target="_blank"><img src="./assets/img/portfolio/affyn.png" alt="PORTFOLIO Csp DAO - Affyn"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://authtrail.com"
+                target="_blank"><img src="./assets/img/portfolio/authtrail.png" alt="PORTFOLIO Csp DAO - Authtrail"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://moonray.game/"
+                target="_blank"><img src="./assets/img/portfolio/moonray.png" alt="PORTFOLIO Csp DAO - Moonray"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.nulink.org"
+                target="_blank"><img src="./assets/img/portfolio/nulink.png" alt="PORTFOLIO Csp DAO - Nulink"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.gogocoin.io/"
+                target="_blank"><img src="./assets/img/portfolio/gogocoin.png" alt="PORTFOLIO Csp DAO - GogoCoin"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://venue.one" target="_blank"><img
+                  src="./assets/img/portfolio/venue.png" alt="PORTFOLIO Csp DAO - Venue" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.coinfantasy.io/"
+                target="_blank"><img src="./assets/img/portfolio/coinfantasy.png" alt="PORTFOLIO Csp DAO - Coinfantasy"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://hawksight.co/"
+                target="_blank"><img src="./assets/img/portfolio/hawksight.png" alt="PORTFOLIO Csp DAO - Hawksight"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://astraguild.io/"
+                target="_blank"><img src="./assets/img/portfolio/astraguild.png" alt="PORTFOLIO Csp DAO - Astraguild"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.solchicks.io/"
+                target="_blank"><img src="./assets/img/portfolio/solchicks.png" alt="PORTFOLIO Csp DAO - Solchicks"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.metaxy.game"
+                target="_blank"><img src="./assets/img/portfolio/metaxy.png" alt="PORTFOLIO Csp DAO - Metaxy"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://beamswap.io" target="_blank"><img
+                  src="./assets/img/portfolio/beamswap.png" alt="PORTFOLIO Csp DAO - Beamswap" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.earnguild.io"
+                target="_blank"><img src="./assets/img/portfolio/earnguild.png" alt="PORTFOLIO Csp DAO - Earnguild"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://plutonians.tech"
+                target="_blank"><img src="./assets/img/portfolio/plutonians.png" alt="PORTFOLIO Csp DAO - Plutonians"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://battleverse.io"
+                target="_blank"><img src="./assets/img/portfolio/battleverse.png" alt="PORTFOLIO Csp DAO - Battleverse"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://metafighter.com"
+                target="_blank"><img src="./assets/img/portfolio/metafighter.png" alt="PORTFOLIO Csp DAO - Meta Fighter"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://universeisland.games/"
+                target="_blank"><img src="./assets/img/portfolio/universeisland.png"
+                  alt="PORTFOLIO Csp DAO - Universe Island" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://arenum.io/" target="_blank"><img
+                  src="./assets/img/portfolio/arenum.png" alt="PORTFOLIO Csp DAO - Arenum" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://uponly.com/" target="_blank"><img
+                  src="./assets/img/portfolio/uponly.png" alt="PORTFOLIO Csp DAO - Uponly" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://stman.io/" target="_blank"><img
+                  src="./assets/img/portfolio/stman.png" alt="PORTFOLIO Csp DAO - Stman" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://glitter.finance/"
+                target="_blank"><img src="./assets/img/portfolio/glitter-finance.png"
+                  alt="PORTFOLIO Csp DAO - Glitter Finance" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.digicorplabs.com/"
+                target="_blank"><img src="./assets/img/portfolio/logo-digicorplabs.png"
+                  alt="PORTFOLIO Csp DAO - DigiCorpLabs" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.metamalls.io/"
+                target="_blank"><img src="./assets/img/portfolio/metamalln.png" alt="PORTFOLIO Csp DAO - Metamalls"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.pokt.network/"
+                target="_blank"><img src="./assets/img/portfolio/pokt-network.png" alt="PORTFOLIO Csp DAO - POKT"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://strips.finance/"
+                target="_blank"><img src="./assets/img/portfolio/strips-finance.png" alt="PORTFOLIO Csp DAO - Strips"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://nakamoto.games/"
+                target="_blank"><img src="./assets/img/portfolio/nakamoto-games.png" alt="PORTFOLIO Csp DAO - Nakamoto"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://roco.finance/"
+                target="_blank"><img src="./assets/img/portfolio/roco-finance.png" alt="PORTFOLIO Csp DAO - Roco"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.gamerse.network/"
+                target="_blank"><img src="./assets/img/portfolio/gamerse.png" alt="PORTFOLIO Csp DAO - Gamerse"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://algebra.exchange/#/swap"
+                target="_blank"><img src="./assets/img/portfolio/algebra-exchange.png" alt="PORTFOLIO Csp DAO - Algebra"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://defina.finance/"
+                target="_blank"><img src="./assets/img/portfolio/defina-finance.png" alt="PORTFOLIO Csp DAO - Defina"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://gaiaworld.com/"
+                target="_blank"><img src="./assets/img/portfolio/gaiaworld.png" alt="PORTFOLIO Csp DAO - gaiaworld"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.stablecomp.com/"
+                target="_blank"><img src="./assets/img/portfolio/stablecomp.png" alt="PORTFOLIO Csp DAO - Stablecomp"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://scallopx.com/"
+                target="_blank"><img src="./assets/img/portfolio/scallopx.png" alt="PORTFOLIO Csp DAO - Scallop"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://ruby.io/" target="_blank"><img
+                  src="./assets/img/portfolio/ruby.png" alt="PORTFOLIO Csp DAO - Ruby" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://market.onquidd.com/"
+                target="_blank"><img src="./assets/img/portfolio/market-onquidd.png" alt="PORTFOLIO Csp DAO - Quidd"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.cryptoblades.io/"
+                target="_blank"><img src="./assets/img/portfolio/cryptoblades.png"
+                  alt="PORTFOLIO Csp DAO - CryptoBlades" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://pendulumchain.org/"
+                target="_blank"><img src="./assets/img/portfolio/pendulumchain.png"
+                  alt="PORTFOLIO Csp DAO - PendulumChain" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://stargaze.zone/"
+                target="_blank"><img src="./assets/img/portfolio/stargaze.png" alt="PORTFOLIO Csp DAO - Stargaze"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.meld.com/"
+                target="_blank"><img src="./assets/img/portfolio/meld.png" alt="PORTFOLIO Csp DAO - Meld"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.mine.network/"
+                target="_blank"><img src="./assets/img/portfolio/mine-network.png" alt="PORTFOLIO Csp DAO - Mine"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://atlasdex.finance/"
+                target="_blank"><img src="./assets/img/portfolio/atlasdex-finance.png"
+                  alt="PORTFOLIO Csp DAO - AtlasDex" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://swashapp.io/" target="_blank"><img
+                  src="./assets/img/portfolio/swashapp.png" alt="PORTFOLIO Csp DAO - Swashapp" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://metagame-arena.io/#/"
+                target="_blank"><img src="./assets/img/portfolio/metagame-arena.png"
+                  alt="PORTFOLIO Csp DAO - Metagame Arena" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://chingari.io/" target="_blank"><img
+                  src="./assets/img/portfolio/chingari.png" alt="PORTFOLIO Csp DAO - Chingari" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://tryhards.io/" target="_blank"><img
+                  src="./assets/img/portfolio/tryhards.png" alt="PORTFOLIO Csp DAO - TryHards" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://sugarbounce.com/"
+                target="_blank"><img src="./assets/img/portfolio/sugarbounce.png" alt="PORTFOLIO Csp DAO - SugarBounce"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://soldex.ai/" target="_blank"><img
+                  src="./assets/img/portfolio/soldex.png" alt="PORTFOLIO Csp DAO - Soldex" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://sahara.network/"
+                target="_blank"><img src="./assets/img/portfolio/sahara.png" alt="PORTFOLIO Csp DAO - Sahara"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://therealmdefenders.com/"
+                target="_blank"><img src="./assets/img/portfolio/therealmdefenders.png"
+                  alt="PORTFOLIO Csp DAO - TheRealmDefenders" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://upfi.network/"
+                target="_blank"><img src="./assets/img/portfolio/upfi.png" alt="PORTFOLIO Csp DAO - Upfi"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.spacey2025.com/"
+                target="_blank"><img src="./assets/img/portfolio/spacey2025.png" alt="PORTFOLIO Csp DAO - Fluid"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.fluid.finance/"
+                target="_blank"><img src="./assets/img/portfolio/fluid.png" alt="PORTFOLIO Csp DAO - Fluid"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://adafinance.io/"
+                target="_blank"><img src="./assets/img/portfolio/adafinance-1.png" alt="PORTFOLIO Csp DAO - ADAFinance"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://5ire.org/" target="_blank"><img
+                  src="./assets/img/portfolio/5ire.png" alt="PORTFOLIO Csp DAO - 5ire" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://solcial.io/" target="_blank"><img
+                  src="./assets/img/portfolio/solcial.png" alt="PORTFOLIO Csp DAO - Solcial" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.amara.link/"
+                target="_blank"><img src="./assets/img/portfolio/amara.png" alt="PORTFOLIO Csp DAO - Amara"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.xhashtag.io/"
+                target="_blank"><img src="./assets/img/portfolio/xhashtag.png" alt="PORTFOLIO Csp DAO - Xhashtag"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.void.games/"
+                target="_blank"><img src="./assets/img/portfolio/void.png" alt="PORTFOLIO Csp DAO - Void"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.koi.io/" target="_blank"><img
+                  src="./assets/img/portfolio/koi.png" alt="PORTFOLIO Csp DAO - Koi" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://spellfire.com/"
+                target="_blank"><img src="./assets/img/portfolio/spellfire.png" alt="PORTFOLIO Csp DAO - SpellFire"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.geniusyield.co/"
+                target="_blank"><img src="./assets/img/portfolio/geniusyield.png" alt="PORTFOLIO Csp DAO - GeniusYield"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://qed.network/" target="_blank"><img
+                  src="./assets/img/portfolio/qed.png" alt="PORTFOLIO Csp DAO - Ged" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.thekillboxgame.com/index.html"
+                target="_blank"><img src="./assets/img/portfolio/thekillboxgame.png"
+                  alt="PORTFOLIO Csp DAO - TheKillBoxGame" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.netvrk.co/"
+                target="_blank"><img src="./assets/img/portfolio/netvrk.png" alt="PORTFOLIO Csp DAO - Netvrk"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://everlens.io/" target="_blank"><img
+                  src="./assets/img/portfolio/everlens.png" alt="PORTFOLIO Csp DAO - Everlens" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://doingud.com/" target="_blank"><img
+                  src="./assets/img/portfolio/doingud.png" alt="PORTFOLIO Csp DAO - DoinGud" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://getwinkies.com/en/"
+                target="_blank"><img src="./assets/img/portfolio/getwinkies.png" alt="PORTFOLIO Csp DAO - GetWinkies"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://iotexpad.network/"
+                target="_blank"><img src="./assets/img/portfolio/iotexpad.png" alt="PORTFOLIO Csp DAO - IotexPad"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.firework.games/"
+                target="_blank"><img src="./assets/img/portfolio/firework.png" alt="PORTFOLIO Csp DAO - firework"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.bangergames.com/"
+                target="_blank"><img src="./assets/img/portfolio/bangergames.png" alt="PORTFOLIO Csp DAO - BangerGames"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.doragonland.io/"
+                target="_blank"><img src="./assets/img/portfolio/doragonland.png" alt="PORTFOLIO Csp DAO - DoragonLand"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.pi-protocol.io/#/"
+                target="_blank"><img src="./assets/img/portfolio/pi-protocol.png" alt="PORTFOLIO Csp DAO - pi-protocol"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.devv.io/" target="_blank"><img
+                  src="./assets/img/portfolio/devv.png" alt="PORTFOLIO Csp DAO - Devv" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://casperlabs.io/"
+                target="_blank"><img src="./assets/img/portfolio/casperlab.png" alt="PORTFOLIO Csp DAO - Casperlabs"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://bscpad.com/" target="_blank"><img
+                  src="./assets/img/portfolio/bscpad.png" alt="PORTFOLIO Csp DAO - BCSpad" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://tokenplace.com/"
+                target="_blank"><img src="./assets/img/portfolio/tokenplace.png" alt="PORTFOLIO Csp DAO - TokenPlace"
+                  class="width-150"></a></li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://kampay.io/" target="_blank"><img
+                  src="./assets/img/portfolio/kampay.png" alt="PORTFOLIO Csp DAO - KamPay" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://bsclaunch.org/"
+                target="_blank"><img src="./assets/img/portfolio/bsclaunch.png" alt="PORTFOLIO Csp DAO - BSClaunch"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://carbon.xyz/" target="_blank"><img
+                  src="./assets/img/portfolio/carbon.png" alt="PORTFOLIO Csp DAO - Carbon" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.solanium.io/"
+                target="_blank"><img src="./assets/img/portfolio/solanium.png" alt="PORTFOLIO Csp DAO - Solanium"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.pynths.com/"
+                target="_blank"><img src="./assets/img/portfolio/pynths.png" alt="PORTFOLIO Csp DAO - Pynths"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.triall.io/"
+                target="_blank"><img src="./assets/img/portfolio/triall.png" alt="PORTFOLIO Csp DAO - Triall"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.coinburp.com/"
+                target="_blank"><img src="./assets/img/portfolio/coinburp.png" alt="PORTFOLIO Csp DAO - Coinburp"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://chipstars.bet/"
+                target="_blank"><img src="./assets/img/portfolio/chipstars.png" alt="PORTFOLIO Csp DAO - ChipStars"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.pantherprotocol.io/"
+                target="_blank"><img src="./assets/img/portfolio/pantherprotocol.png"
+                  alt="PORTFOLIO Csp DAO - PantherProtocol" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.modadao.io/"
+                target="_blank"><img src="./assets/img/portfolio/modadao.png" alt="PORTFOLIO Csp DAO - ModaDao"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.cryptopunt.com/"
+                target="_blank"><img src="./assets/img/portfolio/cryptopunt.png" alt="PORTFOLIO Csp DAO - CryptoPunt"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://idexo.io/" target="_blank"><img
+                  src="./assets/img/portfolio/idexo.png" alt="PORTFOLIO Csp DAO - Idexo" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://citadel.one/" target="_blank"><img
+                  src="./assets/img/portfolio/citadel.png" alt="PORTFOLIO Csp DAO - Citadel" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://alephzero.org/"
+                target="_blank"><img src="./assets/img/portfolio/alephzero.png" alt="PORTFOLIO Csp DAO - AlephZero"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://pollen.id/" target="_blank"><img
+                  src="./assets/img/portfolio/pollen.png" alt="PORTFOLIO Csp DAO - Pollen" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://cryptomeda.tech/"
+                target="_blank"><img src="./assets/img/portfolio/cryptomeda.png" alt="PORTFOLIO Csp DAO - CryptoMeda"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://defi-city.com/"
+                target="_blank"><img src="./assets/img/portfolio/defi-city1.png" alt="PORTFOLIO Csp DAO - Defi-City"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://unique.network/"
+                target="_blank"><img src="./assets/img/portfolio/unique.png" alt="PORTFOLIO Csp DAO - Unique"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.mintlayer.org/"
+                target="_blank"><img src="./assets/img/portfolio/mintlayer.png" alt="PORTFOLIO Csp DAO - Mintlayer"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://derived.fi/" target="_blank"><img
+                  src="./assets/img/portfolio/derived.png" alt="PORTFOLIO Csp DAO - Derived" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://opolis.co/" target="_blank"><img
+                  src="./assets/img/portfolio/opolis.png" alt="PORTFOLIO Csp DAO - Opolis" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://kanaria.rmrk.app/"
+                target="_blank"><img src="./assets/img/portfolio/kanaria.png" alt="PORTFOLIO Csp DAO - Kanaria"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://ksmstarter.com/"
+                target="_blank"><img src="./assets/img/portfolio/ksmstarter.png" alt="PORTFOLIO Csp DAO - KMS Starter"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.xfinite.io/"
+                target="_blank"><img src="./assets/img/portfolio/xfinite.png" alt="PORTFOLIO Csp DAO - XFinite"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://priviprotocol.io/"
+                target="_blank"><img src="./assets/img/portfolio/priviprotocol1.png"
+                  alt="PORTFOLIO Csp DAO - Priviprotocol" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://synapse.network/"
+                target="_blank"><img src="./assets/img/portfolio/synapse.png" alt="PORTFOLIO Csp DAO - Synapse"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://subquery.network/"
+                target="_blank"><img src="./assets/img/portfolio/subquery.png" alt="PORTFOLIO Csp DAO - Subquery"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://crafting.finance/"
+                target="_blank"><img src="./assets/img/portfolio/crafting.png" alt="PORTFOLIO Csp DAO - Crafting"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.multipad.co/"
+                target="_blank"><img src="./assets/img/portfolio/multipad.png" alt="PORTFOLIO Csp DAO - Multipad"
+                  class="width-150"></a></li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://koii.network/"
+                target="_blank"><img src="./assets/img/portfolio/koii.png" alt="PORTFOLIO Csp DAO - koii"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://bitspawn.io/" target="_blank"><img
+                  src="./assets/img/portfolio/bitspawn.png" alt="PORTFOLIO Csp DAO - Bitspawn" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://humanode.io/" target="_blank"><img
+                  src="./assets/img/portfolio/humanode.png" alt="PORTFOLIO Csp DAO - Somnium Space"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.somniumspace.com/"
+                target="_blank"><img src="./assets/img/portfolio/somniumspace.png"
+                  alt="PORTFOLIO Csp DAO - Somnium Space" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.spherium.finance/"
+                target="_blank"><img src="./assets/img/portfolio/spherium.png" alt="PORTFOLIO Csp DAO - Spherium"
+                  class="width-150"></a></li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.unido.us/"
+                target="_blank"><img src="./assets/img/portfolio/unido.png" alt="PORTFOLIO Csp DAO - Unido"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://unore.io/" target="_blank"><img
+                  src="./assets/img/portfolio/unore.png" alt="PORTFOLIO Csp DAO - Unore" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://ispolink.com/"
+                target="_blank"><img src="./assets/img/portfolio/ispolink.png" alt="PORTFOLIO Csp DAO - Ispolink"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://nft.tech/" target="_blank"><img
+                  src="./assets/img/portfolio/nft-tech.png" alt="PORTFOLIO Csp DAO - NFT tech" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://collateraldefi.io/"
+                target="_blank"><img src="./assets/img/portfolio/collateraldefi.png"
+                  alt="PORTFOLIO Csp DAO - Collateral" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.theapis.io/"
+                target="_blank"><img src="./assets/img/portfolio/theapis.png" alt="PORTFOLIO Csp DAO - The Apis"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.sigmadex.org/"
+                target="_blank"><img src="./assets/img/portfolio/sigmadex.png" alt="PORTFOLIO Csp DAO - Sigma dex"
+                  class="width-150"></a></li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://onomy.io/" target="_blank"><img
+                  src="./assets/img/portfolio/onomy.png" alt="PORTFOLIO Csp DAO - Onomy" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://blockbank.ai/"
+                target="_blank"><img src="./assets/img/portfolio/blockbank.png" alt="PORTFOLIO Csp DAO - BlockBank"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://mobifi.io/" target="_blank"><img
+                  src="./assets/img/portfolio/mobifi.png" alt="PORTFOLIO Csp DAO - MobiFi" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://cellframe.net/#framework"
+                target="_blank"><img src="./assets/img/portfolio/cellframe.png" alt="PORTFOLIO Csp DAO - cellframe"
+                  class="width-150"></a></li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://kelvpn.com/" target="_blank"><img
+                  src="./assets/img/portfolio/kelvpn.png" alt="PORTFOLIO Csp DAO - Kelvpn" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://nftfy.org/" target="_blank"><img
+                  src="./assets/img/portfolio/nftfy.png" alt="PORTFOLIO Csp DAO - Nftfy" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.bosonprotocol.io/"
+                target="_blank"><img src="./assets/img/portfolio/bosonprotocol.png"
+                  alt="PORTFOLIO Csp DAO - Bosonprotocol" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://ampnet.io/" target="_blank"><img
+                  src="./assets/img/portfolio/ampnet.png" alt="PORTFOLIO Csp DAO - Ampnet" class="width-150"></a></li> -->
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://publicmint.com/"
+                target="_blank"><img src="./assets/img/portfolio/publicmint1.png" alt="PORTFOLIO Csp DAO - Publicmint"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://nodle.io/" target="_blank"><img
+                  src="./assets/img/portfolio/nodle1.png" alt="PORTFOLIO Csp DAO - Nodle" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://staratlas.com/"
+                target="_blank"><img src="./assets/img/portfolio/staratlas.png" alt="PORTFOLIO Csp DAO - Staratlas"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.konomi.network/"
+                target="_blank"><img src="./assets/img/portfolio/konomi.png" alt="PORTFOLIO Csp DAO - Konomi"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://paralink.network/"
+                target="_blank"><img src="./assets/img/portfolio/paralink.png" alt="PORTFOLIO Csp DAO - Paralink"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.spiderdao.io/"
+                target="_blank"><img src="./assets/img/portfolio/spiderdao.png" alt="PORTFOLIO Csp DAO - SpiderDAO"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://paidnetwork.com/"
+                target="_blank"><img src="./assets/img/portfolio/paid-network.png" alt="PORTFOLIO Csp DAO - PaidNetwork"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.bridgemutual.io/"
+                target="_blank"><img src="./assets/img/portfolio/bridge-mutual.png"
+                  alt="PORTFOLIO Csp DAO - Bridge Mutual" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://mahadao.com/" target="_blank"><img
+                  src="./assets/img/portfolio/mahadao.png" alt="PORTFOLIO Csp DAO - MahaDAO" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.unn.finance/"
+                target="_blank"><img src="./assets/img/portfolio/union.png" alt="PORTFOLIO Csp DAO - Union"
+                  class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://plasmapay.com/"
+                target="_blank"><img src="./assets/img/portfolio/plasma-pay.png" alt="PORTFOLIO Csp DAO - PlasmaPay"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://storecloud.org/"
+                target="_blank"><img src="./assets/img/portfolio/store.png" alt="PORTFOLIO Csp DAO - Store"
+                  class="width-150"></a>
+            </li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://mantradao.com/"
+                target="_blank"><img src="./assets/img/portfolio/mantradao.png" alt="PORTFOLIO Csp DAO - Mantradao"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.covalenthq.com/"
+                target="_blank"><img src="./assets/img/portfolio/covalent.png" alt="PORTFOLIO Csp DAO - Covalent"
+                  class="width-150"></a></li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://zeroswap.io/" target="_blank"><img
+                  src="./assets/img/portfolio/zeroswap.png" alt="PORTFOLIO Csp DAO - Zeroswap" class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://lattice.exchange/"
+                target="_blank"><img src="./assets/img/portfolio/lattice.png" alt="PORTFOLIO Csp DAO - Lattice"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.finance.vote/"
+                target="_blank"><img src="./assets/img/portfolio/finance.png" alt="PORTFOLIO Csp DAO - Finance"
+                  class="width-150"></a>
+            </li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://razor.network/"
+                target="_blank"><img src="./assets/img/portfolio/razor.png" alt="PORTFOLIO Csp DAO - Razor"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://plotx.io/" target="_blank"><img
+                  src="./assets/img/portfolio/plotx.png" alt="PORTFOLIO Csp DAO - Ploxt" class="width-150"></a></li>
+            <li class="list-inline-item  mr-0 portfolio-border-color"><a href="https://www.shyft.network/"
+                target="_blank"><img src="./assets/img/portfolio/shyft.png" alt="PORTFOLIO Csp DAO - Shyft"
+                  class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://utu.io/" target="_blank"><img
+                  src="./assets/img/portfolio/utu.png" alt="PORTFOLIO Csp DAO - Utu" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://www.acdx.io/" target="_blank"><img
+                  src="./assets/img/portfolio/acdx.png" alt="PORTFOLIO Csp DAO - Acdx" class="width-150"></a></li>
+
+            <li class="list-inline-item mr-0 portfolio-border-color"><a href="https://riochain.io/" target="_blank"><img
+                  src="./assets/img/portfolio/rioDeFi.png" alt="PORTFOLIO Csp DAO - rioDeFi" class="width-150"></a></li>
+            <li class="list-inline-item mr-0 portfolio-border-color">
+              <a href="https://defipie.com/" target="_blank">
+                <img src="./assets/img/portfolio/defipie.png" alt="PORTFOLIO Csp DAO - defipie" class="width-150">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="emailus">
+    <div class="container">
+      <div class="centers">
+        <div class="containerForms">
+        
+            <h1 class="title">Contact Us ☝️</h1>
+            <div class="separator2"></div>
+          
+            <div class="form form__1">
+              
+              <input type="text" class="form__input" placeholder="Full name" id="name" required>
+            </div>
+          
+            <div class="form form__2">
+            
+              <input type="email" class="form__input" placeholder="Email address" id="email" required>
+            </div>
+          
+            <div class="form form__3">
+          
+              <!-- <textarea  name="textarea" class="form__input" placeholder="Your message" id="message" required > </textarea> -->
+             
+               <textarea class="form__input"  name="textarea" id="message"  placeholder="Your message" required></textarea>
+            </div>
+          
+            <button class="form__btn">
+              <span class="form__btn--visible"><p>Submit</p> 
+              
+              </span>
+              <span class="form__btn--invisible">Message sent!</span>
+            </button>
+        
+          <!-- <div class="containerMails">
+            <div class="mail">
+              <div class="mail__back"></div>
+              <div class="mail__top"></div>
+              <div class="mail__letter">
+                <div class="mail__letter-square">
+                </div>
+                <div class="mail__letter-lines">
+                </div>
+              </div>
+              <div class="mail__left"></div>
+              <div class="mail__right"></div>
+              <div class="mail__bottom"></div>
+            </div>
+          </div> -->
+          
+        </div>
+      </div>
+    </div>
+  
+   </section>
+
+  <section id="faq">
+    <div class="faqContainer">
+     <div class="wrapper">
+       
+         <h1>FAQs</h1>
+         <div class="separator2">
+
+         </div>
+   
+         <div class="faq">
+           <button class="accordion">
+            What is BlockShift Capital?
+             <i class="fa-solid fa-chevron-down"></i>
+           </button>
+           <div class="pannel">
+             <p>
+              BlockShift Capital is a venture capital firm that specializes in investing in blockchain technology and digital assets. The firm focuses on supporting early-stage startups and projects that leverage blockchain technology to create innovative solutions and drive the adoption of decentralized systems. BlockShift Capital provides funding, strategic guidance, and networking opportunities to help these companies grow and succeed in the rapidly evolving blockchain and cryptocurrency industry.
+             </p>
+           </div>
+         </div>
+   
+         <div class="faq">
+           <button class="accordion">
+            What do we invest in?
+             <i class="fa-solid fa-chevron-down"></i>
+           </button>
+           <div class="pannel">
+             <p>
+              Blockchain Technology: Investing in companies that develop and implement blockchain solutions across various industries, including finance, supply chain, healthcare, and more.
+<br>
+<br> 
+<br> 
+              Digital Assets: Supporting projects that create or utilize digital assets such as cryptocurrencies, tokens, and other blockchain-based financial instruments.
+              <br> 
+              <br>   
+              Decentralized Finance (DeFi): Backing platforms and protocols that offer decentralized financial services, such as lending, borrowing, trading, and yield farming, without traditional intermediaries.
+              <br>
+              <br> 
+              NFTs and Digital Collectibles: Investing in projects related to non-fungible tokens (NFTs), which represent ownership of unique digital items such as art, music, and virtual real estate.
+              <br>
+              <br> 
+              Web3 and Decentralized Applications (dApps): Supporting the development of Web3 technologies and decentralized applications that provide new ways for users to interact with digital services in a decentralized manner.
+              <br>
+              <br> 
+              Infrastructure and Tools: Funding companies that build the infrastructure and tools necessary for the blockchain ecosystem to thrive, including scalability solutions, interoperability protocols, and developer tools.
+              <br>
+              <br> 
+              RegTech and LegalTech: Investing in technologies that address regulatory and legal challenges within the blockchain and cryptocurrency space, ensuring compliance and enhancing security.
+              <br>
+              <br> 
+              Gaming and Metaverse: Supporting blockchain-based gaming platforms and virtual worlds that utilize blockchain technology for in-game assets, economies, and player interactions.
+             </p>
+           </div>
+         </div>
+   
+         <div class="faq">
+           <button class="accordion">
+            How do I join the BlockShift Capital community?
+             <i class="fa-solid fa-chevron-down"></i>
+           </button>
+           <div class="pannel">
+             <p>
+              You can gain access to the BlockShift Capital community by purchasing an NFT.
+             </p>
+           </div>
+         </div>
+   
+         <div class="faq">
+           <button class="accordion">
+            Does BlockShift KYC?
+             <i class="fa-solid fa-chevron-down"></i>
+           </button>
+           <div class="pannel">
+             <p>
+              In order to join the Discord and hold the NFT you do not need to KYC.
+
+              If you want to invest in a deal you must do KYC.
+             </p>
+           </div>
+         </div>
+   
+         <div class="faq">
+           <button class="accordion">
+            Are all BlockShift Tastemakers required to be accredited investors?
+
+             <i class="fa-solid fa-chevron-down"></i>
+           </button>
+           <div class="pannel">
+             <!-- <ul>
+                 <li>Go to ‘Rewards’ at the bottom right corner</li>
+                    <li> Click on ‘My Rewards’ and tap on ‘Have a discount coupon code?’</li>
+                   <li> Enter your code, tap ‘Apply now'</li> 
+                   <li>  Enter any contest and enjoy your discount</li>
+             </ul> -->
+             <p>
+              In order to join the Discord and hold the NFT you do not need to be an accredited investors.
+
+If you want to invest in a deal you must be an accredited investor, and we check for this.
+             </p>
+           </div>
+         </div>
+   
+         <div class="faq">
+           <button class="accordion">
+            How does BlockShift structure it's deals?
+             <i class="fa-solid fa-chevron-down"></i>
+           </button>
+           <div class="pannel">
+            <p>
+              We work with legal to set up SPV's (Special Purpose Vehicles). These are legal entities that are formulated with the sole purpose of investing in one deal.
+            </p>
+             <!-- <p>
+                 <span>There are 3 ways in which you can download the Dream11 app.</span>
+ 
+               <ul>
+                 <li>  Head to www.dream11.com on your desktop or mobile browser and enter your mobile number to get the download link</li>
+                 <li>If you're an iOS user, you can also search for ‘Dream11’ in the App Store and download the app</li>
+                 <li>If you are an android user, you can also search for the 'Dream11' on the Play Store and download the app</li>
+               </ul>
+             </p> -->
+           </div>
+         </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+         <div class="faq">
+             <button class="accordion">
+              How does the DAO governance work?
+
+               <i class="fa-solid fa-chevron-down"></i>
+             </button>
+             <div class="pannel">
+               <p>
+                Tastemaker's will be able to vote on contractors, vendors, investments and more for the DAO by holding the Vanta NFT's in their wallet.
+               </p>
+             </div>
+           </div>
+ 
+ 
+ 
+           <div class="faq">
+             <button class="accordion">
+              How do we source our deal flow?
+
+               <i class="fa-solid fa-chevron-down"></i>
+             </button>
+             <div class="pannel">
+               <p>
+                Strength in numbers.
+
+                As a community of tastemakers, we are blessed to have no shortage of high-quality deal flow. Over the past 7 years, we have built proprietary deal-flow channels with nearly every leading VC, exchange and foundation in web3.
+               </p>
+             </div>
+           </div>
+
+           <div class="faq">
+            <button class="accordion">
+              How do we choose our investments?
+
+
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+              <p>
+                Every investment made by the VANTA community is vetted through multiple levels of commercial and technical diligence.
+                <br>
+                <br>
+                <br>
+
+
+                1. Deal flow is screed to ensure it falls within mandate, the project is sound, and the round economics make sense.
+                <br>
+                <br>
+                
+                2. Deals are listed under "Deals Under Consideration" in Discord for members to review and pledge.
+                <br>
+                <br>
+                
+                3. If a pledge minimum is reached we commission an 8-14 page research report and share it amongst the community.
+                <br>
+                <br>
+                
+                4. SPV is formed and capital is contributed amongst our investors.      </p>
+            </div>
+          </div>
+
+          <div class="faq">
+            <button class="accordion">
+              Where did the name blockShift capital come from?
+
+
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+              <p>
+                The name "BlockShift Capital" likely combines the concepts of "blockchain" and "shift" to convey a strategic and innovative approach to investing in blockchain technology and digital assets. Here's a breakdown of the possible meanings behind the name:
+<br>
+<br>
+<br>
+
+                "Block": Refers to blockchain technology, which is the core focus of the firm's investments. Blockchain is a decentralized, distributed ledger technology that underpins cryptocurrencies and other digital assets, offering transparency, security, and immutability.
+                <br>
+                <br>
+                "Shift": Implies a significant change or transformation. In this context, it suggests a shift in the financial and technological landscape brought about by blockchain technology. It also conveys the firm's mission to drive and support this transformative shift through their investments.
+                <br>
+                <br>
+                "Capital": Indicates that the firm is a venture capital entity, providing financial resources and strategic support to startups and projects within the blockchain ecosystem.
+                <br>
+                <br>
+                Combining these elements, "BlockShift Capital" signifies a venture capital firm dedicated to fostering and accelerating the shift towards a blockchain-powered future by investing in and supporting innovative projects and startups in the blockchain and digital asset space.      </p>
+            </div>
+          </div>
+
+           
+ 
+       </div>
+   
+    </div>
+ </section>
+
+ 
+
+<section id="contact" style="position: relative;">
+
+  
+
+
+ 
+    <div class="container p-5">
+      <div class="row">
+        <div class="col-12 col-md-8 mx-auto text-center">
+          <div class="row">
+            <div class="col-12">
+              <img src="./assets/img/blockShift-logo.jpg" class="logo  w-75" alt="CSPDAO">
+            </div>
+            <div class="col-12" id="join">
+              <h4 class="mt-4">Connect with Like-Minded Souls</h4>
+              <p class="mb-5">Get all the latest news and updates from us!</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+  <div class="icons p-5 p-5">
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            <a href="mailto:contact@blockshift.network" class="social shadow-h  mr-2  mb-3"><svg class="svg-inline--fa fa-envelope fa-w-16 fa-fw fa-2x" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg><!-- <i class="fa fa-fw fa-envelope fa-2x"></i> --> <span class="social-title"> E-MAIL</span></a>
+
+            <a href="https://t.me/#" target="_blank" class="social shadow-h mr-2  mb-3"><svg class="svg-inline--fa fa-telegram-plane fa-w-14 fa-fw fa-2x" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="telegram-plane" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z"></path></svg><!-- <i class="fab fa-fw fa-telegram-plane fa-2x"></i> -->
+                <span class="social-title"> TELEGRAM</span></a>
+
+
+            <a href="https://twitter.com/#" target="_blank" class="social shadow-h mr-2  mb-3"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw fa-2x" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-fw fa-twitter fa-2x"></i> --> <span class="social-title">TWITTER</span></a>
+
+            <a href="https://medium.com/#" target="_blank" class="social shadow-h mr-2  mb-3"><svg class="svg-inline--fa fa-medium fa-w-14 fa-fw fa-2x" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="medium" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 32v448h448V32H0zm372.2 106.1l-24 23c-2.1 1.6-3.1 4.2-2.7 6.7v169.3c-.4 2.6.6 5.2 2.7 6.7l23.5 23v5.1h-118V367l24.3-23.6c2.4-2.4 2.4-3.1 2.4-6.7V199.8l-67.6 171.6h-9.1L125 199.8v115c-.7 4.8 1 9.7 4.4 13.2l31.6 38.3v5.1H71.2v-5.1l31.6-38.3c3.4-3.5 4.9-8.4 4.1-13.2v-133c.4-3.7-1-7.3-3.8-9.8L75 138.1V133h87.3l67.4 148L289 133.1h83.2v5z"></path></svg><!-- <i class="fab fa-fw fa-medium fa-2x "></i> --> <span class="social-title"> MEDIUM</span></a>
+
+        </div>
+
+    </div>
+  </div>
+
+<div class="copyright p-5 p-5">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12 text-center">
+            <!-- <a class="logo fLogo" href="#"> <img src="./assets/img/blockShitSign.png" alt="Download our logo" title="Download our logo"></a> -->
+             <span> ALL RIGHTS RESERVED |</span>  <span>|</span>
+              <span class="text-success"> Block SHIFT Capital </span> <span>2020-2024</span>
+          </div>
+          <div class="col-md-12 text-center mt-3">
+              <span> <a href="terms" class="text-success">Terms and Conditions</a>  •  <a href="privacy-policy" class="text-success">Privacy Policy</a></span>
+          </div>
+      </div>
+  </div>
+  
+  </div>
+
+  <div class="upScroll">
+    <a href="#hero"><i class="fa-solid fa-jet-fighter-up"></i></a>
+  </div>
+</section>
+
+
+
+  <!--FontAwsome link-->
+  <script src="https://kit.fontawesome.com/c63790eb54.js" crossorigin="anonymous"></script>
+  <!-- bootstrap js link-->
+  <script src="js/bootstrap.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Main js -->
+  <script src="js/program.js"></script>
+</body>
+
+</html>
