@@ -1071,6 +1071,7 @@ button.text-nanoRed {
     line-height: 20px;
     opacity: 0.6;
     box-shadow: var(--boxShadow);
+    text-align: start;
     
   }
   
