@@ -17,8 +17,6 @@
   <!--bootstrap link-->
   <link rel="stylesheet" href="style/bootstrap.css">
   <link rel="stylesheet" href="style/bootstrap.min.css">
-  <!-- form css -->
-   <link rel="stylesheet" href="style/form.css">
   <!--Main link-->
   <link rel="stylesheet" href="style/style.css">
   <!--Main responsive link-->
@@ -1115,54 +1113,36 @@
 
   <section id="emailus">
     <div class="container">
-      <div class="centers">
-        <div class="containerForms">
-        
-            <h1 class="title">Contact Us ☝️</h1>
-            <div class="separator2"></div>
-          
-            <div class="form form__1">
-              
-              <input type="text" class="form__input" placeholder="Full name" id="name" required>
-            </div>
-          
-            <div class="form form__2">
-            
-              <input type="email" class="form__input" placeholder="Email address" id="email" required>
-            </div>
-          
-            <div class="form form__3">
-          
-              <!-- <textarea  name="textarea" class="form__input" placeholder="Your message" id="message" required > </textarea> -->
-             
-               <textarea class="form__input"  name="textarea" id="message"  placeholder="Your message" required></textarea>
-            </div>
-          
-            <button class="form__btn">
-              <span class="form__btn--visible"><p>Submit</p> 
-              
-              </span>
-              <span class="form__btn--invisible">Message sent!</span>
-            </button>
-        
-          <!-- <div class="containerMails">
-            <div class="mail">
-              <div class="mail__back"></div>
-              <div class="mail__top"></div>
-              <div class="mail__letter">
-                <div class="mail__letter-square">
-                </div>
-                <div class="mail__letter-lines">
-                </div>
+      <h1>Contact Form</h1>
+      <form id="contact_form" name="contact_form" method="post">
+          <div class="mb-5 row">
+              <div class="col">
+                  <label>First Name</label>
+                  <input type="text" required maxlength="50" class="form-control" id="first_name" name="first_name">
               </div>
-              <div class="mail__left"></div>
-              <div class="mail__right"></div>
-              <div class="mail__bottom"></div>
-            </div>
-          </div> -->
-          
-        </div>
-      </div>
+              <div class="col">
+                  <label>Last Name</label>
+                  <input type="text" required maxlength="50" class="form-control" id="last_name" name="last_name">
+              </div>
+          </div>
+          <div class="mb-5 row">
+              <div class="col">
+                  <label for="email_addr">Email address</label>
+                  <input type="email" required maxlength="50" class="form-control" id="email_addr" name="email"
+                      placeholder="name@example.com">
+              </div>
+              <div class="col">
+                  <label for="phone_input">Phone</label>
+                  <input type="tel" required maxlength="50" class="form-control" id="phone_input" name="Phone"
+                      placeholder="Phone">
+              </div>
+          </div>
+          <div class="mb-5">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary px-4 btn-lg">Post</button>
+      </form>
     </div>
   
    </section>
