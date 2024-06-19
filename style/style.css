@@ -644,7 +644,7 @@ justify-content: center!important;
     .logo img {
         width: 70px;
         height: 55px;
-        border-radius: 10px;
+        border-radius: 100%;
         box-shadow: var(--boxShadow);
     }
     .worldCanvas {
