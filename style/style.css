@@ -39,10 +39,11 @@
 }
 
   .logo img {
-    width: 95px;
-    height: 80px;
-    border-radius: 10px;
+    width: 70px;
+    height: 70px;
     box-shadow: var(--boxShadow);
+  
+    border-radius: 100%;
 }
 canvas {
     box-shadow: var(--ShadowHover) !important;
@@ -332,6 +333,7 @@ img.logo {
     width: 200px !important;
     margin: 10px auto auto auto;
     box-shadow: var(--boxShadow);
+    border-radius: 100%;
 }
 #about{
     /* background-color: black; */
