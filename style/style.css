@@ -645,6 +645,7 @@ justify-content: center!important;
         width: 70px;
         height: 55px;
         border-radius: 100%;
+        border-radius: 100px;
         box-shadow: var(--boxShadow);
     }
     .worldCanvas {
