@@ -1239,10 +1239,11 @@ button.text-nanoRed {
     padding: 0 2rem 2.5rem 2rem;
     background-color: white;
     overflow: hidden;
-    /* background-color: #0d0e10; */
+    box-shadow: var(--ShadowHover);
     background-color: var(--white);
     display: none;
     border: .5px solid #e2dede;
+    box-shadow: var(--ShadowHover);
   }
   .pannel p {
     color: var(--fontColor);
@@ -1253,7 +1254,11 @@ button.text-nanoRed {
     opacity: 1;
     text-align: justify;
 }
-  
+.pannel p span{
+   
+    /* background-color: white; */
+    font-weight: bold;
+}
 
 
 #faq {
