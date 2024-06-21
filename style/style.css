@@ -218,6 +218,7 @@ a {
     padding-top: 100px;
     padding-bottom: 100px;
     background-color: var(--white);
+    padding-bottom: 100px;
 }
 .companyName span {
     margin-bottom: 30px;
@@ -342,9 +343,10 @@ img.logo {
 }
 
 .aboutWrapper {
-    padding-top: 8rem;
+    /* padding-top: 8rem; */
     text-align: justify;
     padding-bottom: 8rem;
+    padding-top: 15rem;
 }
 .aboutTxt{
     color: white;
@@ -400,7 +402,10 @@ label {
     box-shadow: var(--boxShadow);
 } */
 
-
+.dotlottie-player{
+    width: 80%;
+    margin: auto;
+}
 
 .portfolio-ul {
     margin: auto;
@@ -492,6 +497,7 @@ a {
 #growingNetwork {
     position: absolute;
     width: 100%;
+    margin-top: 20px;
 }
 
 .sepaDiv{
@@ -536,6 +542,16 @@ section#emailus {
   align-items: center;
 }
 @media (max-width: 768px){
+
+    .lottiAnimation {
+        margin: auto;
+        width: 100%!important;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3rem!important;
+    }
 
     .faqContainer{
 
@@ -630,6 +646,15 @@ justify-content: center!important;
     }
     
     
+}
+
+.lottiAnimation {
+    margin: auto;
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* @media (min-width: 768px) and (max-width:1300) {
