@@ -257,7 +257,7 @@ a {
     justify-content: space-around;
     align-items: center;
     padding: 20px 0px;
-    box-shadow: var(--ShadowHover);
+    /* box-shadow: var(--ShadowHover); */
 }
 
 .title {
@@ -412,7 +412,7 @@ label {
 
 .portfolio-ul {
     margin: auto;
-    background: white;
+    /* background: white; */
     padding: 13px 15px;
     display: flex;
     justify-content: center;
@@ -441,7 +441,7 @@ label {
     width: 90%;
     text-align: center;
     margin: auto;
-    box-shadow: var(--ShadowHover);
+    /* box-shadow: var(--ShadowHover); */
     padding: 12px;
 }
 .portfolioTitle{
@@ -475,8 +475,8 @@ ul li:hover {
     border-right: 1px solid !important; */
     
     
-        background-color: white;
-        box-shadow: var(--boxShadow);
+        /* background-color: white;
+        box-shadow: var(--boxShadow); */
 
 }
 
